@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { useUserStore } from '../stores/user';
 
-// const API_BASE_URL = 'https://go.protowa.id/';
-const API_BASE_URL = 'http://100.109.71.80:8089/';
+const API_BASE_URL = 'https://go.protowa.id/';
+// const API_BASE_URL = 'http://100.109.71.80:8089/';
 const user = useUserStore();
 
 async function fetchData(uriUrl: string, payload: Record<string, any> = {}, method: 'get' | 'post' = 'get') {
