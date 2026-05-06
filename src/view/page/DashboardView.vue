@@ -28,7 +28,7 @@
         <div class="bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
           <div class="p-5">
             <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Grafik Suhu</h3>
-            <canvas id="temperatureChart"></canvas>
+            <canvas ref="chartRef"></canvas>
           </div>
         </div>
       </div>
@@ -42,6 +42,7 @@ import api from '@/api/api';
 const tempNo = ref<Number>(0);
 const lampStatus = ref<String>('Mati');
 let eventsource: EventSource; 
+const chartRef = ref<HTMLCanvasElement | null>(null);
 
 let chartInstance: Chart | null = null;
 onMounted(() => {
@@ -52,9 +53,8 @@ onMounted(() => {
     console.error('Error fetching lamp status:', err);
   });
  eventsource = api.getRealTimeTemperature();
-  const ctx = document.getElementById('temperatureChart');
-  if (ctx) {
-    chartInstance = new Chart(ctx, {
+  if (chartRef.value) {
+    chartInstance = new Chart(chartRef.value, {
       type: 'line',
       data: {
         labels: [],

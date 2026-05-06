@@ -29,7 +29,7 @@ async function fetchData(uriUrl: string, payload: Record<string, any> = {}, meth
     }
 }
 
-async function getLampStatus(): Promise<{ status: string }> {
+async function getLampStatus(): Promise<{ lamp_status: string }> {
         return await fetchData('lamp-status/latest', {
             deviceKey: user.deviceKey
         }, 'post');
