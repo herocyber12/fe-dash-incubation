@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-[#F0F7FF] antialiased; /* Warna biru pucat yang sangat relax */
+}
+
+/* Membatasi tampilan agar tetap terasa seperti mobile di layar lebar */
+.mobile-container {
+  max-width: 480px;
+  margin: 0 auto;
+  min-height: 100vh;
+  @apply bg-[#F0F7FF] shadow-2xl;
+}
