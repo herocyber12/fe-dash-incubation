@@ -3,23 +3,14 @@ import { ref } from 'vue';
 import { KeyRound, ArrowRight, ShieldCheck } from 'lucide-vue-next';
 import {useUserStore} from "../../stores/user";
 import { useRouter } from 'vue-router';
+import api from '@/api/api';
 
 const deviceKey = ref('');
 const router = useRouter();
 
 const handleSubmit = async () => {
   if (deviceKey.value) {
-    const resp = await fetch("https://go.protowa.id/auth",{
-      method:"POST",
-      headers:{
-        "Content-Type" : "application/json",
-      },
-      body: JSON.stringify({
-        "deviceKey" : deviceKey.value,
-      })
-    })
-
-    const data = await resp.json()
+    const data = await api.auth(deviceKey.value);
 
     if (data.status)
     {

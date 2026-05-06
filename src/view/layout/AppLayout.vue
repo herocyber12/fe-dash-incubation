@@ -1,8 +1,13 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { Menu, X, LayoutDashboard, ShieldCheck, Settings, LogOut } from 'lucide-vue-next';
+import { useUserStore } from '@/stores/user';
 
 const isSidebarOpen = ref(false);
+function logout() {
+  const userStore = useUserStore();
+  userStore.clearKey();
+}
 </script>
 
 <template>
@@ -50,7 +55,7 @@ const isSidebarOpen = ref(false);
         </nav>
 
         <div class="absolute bottom-8 w-full px-4">
-          <button class="flex items-center gap-3 w-full p-3 rounded-xl hover:bg-red-500/10 hover:text-red-400 transition-all">
+          <button @click="logout" class="flex items-center gap-3 w-full p-3 rounded-xl hover:bg-red-500/10 hover:text-red-400 transition-all">
             <LogOut :size="20"/> Logout
           </button>
         </div>

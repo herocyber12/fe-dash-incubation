@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { useUserStore } from '../stores/user';
 
-// const API_BASE_URL = 'http://100.109.71.80:8089/';
-const API_BASE_URL = 'https://go.protowa.id/';
+// const API_BASE_URL = 'https://go.protowa.id/';
+const API_BASE_URL = 'http://100.109.71.80:8089/';
 const user = useUserStore();
 
 async function fetchData(uriUrl: string, payload: Record<string, any> = {}, method: 'get' | 'post' = 'get') {
@@ -27,6 +27,12 @@ async function fetchData(uriUrl: string, payload: Record<string, any> = {}, meth
     } catch (error) {
         throw error;
     }
+}
+
+async function auth(deviceKey: string){
+    return await fetchData('auth', {
+        deviceKey: deviceKey
+    }, 'post');
 }
 
 async function getLampStatus(): Promise<{ lamp_status: string }> {
@@ -62,5 +68,6 @@ export default {
     getRealTimeTemperature,
     getLampStatus,
     updateSettings,
-    getConfigDevice
+    getConfigDevice,
+    auth,
 }
