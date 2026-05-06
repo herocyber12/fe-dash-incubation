@@ -7,6 +7,7 @@ const isSidebarOpen = ref(false);
 function logout() {
   const userStore = useUserStore();
   userStore.clearKey();
+  window.location.href = '/login';
 }
 </script>
 
