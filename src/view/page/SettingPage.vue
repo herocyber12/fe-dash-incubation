@@ -8,11 +8,17 @@
         
     onMounted(async () => {
         try {
+            let waNotify = '';
             const resp = await api.getConfigDevice();
+
+            if(resp.wa_notify) {
+                waNotify = String(resp.wa_notify);
+            }
+
             if(resp.success){
                 minTemp.value = resp.min_temperature;
                 maxTemp.value = resp.max_temperature;
-                targetNotif.value = String(resp.wa_notify);
+                targetNotif.value = waNotify;
             }
         } catch (error) {
             console.error('Error fetching device config:', error);
